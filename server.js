@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
+app.use(cors()); //cors 에러를 방지하기 위해
 
 app.use(bodyParser.json());
 
@@ -23,11 +23,14 @@ app.post("api/tasks", (req, res) => {
 });
 
 app.get("/api/tasks", (req, res) => {
-  const tasks = [
-    { id: 1, title: "Task 1", completed: false },
-    { id: 2, title: "Task 2", completed: true },
-    { id: 3, title: "Task 3", completed: false },
-  ];
+  const tasks = {
+    name: "kevin",
+    data: [
+      { id: 1, title: "Task 1", completed: false },
+      { id: 2, title: "Task 2", completed: true },
+      { id: 3, title: "Task 3", completed: false },
+    ],
+  };
   res.json(tasks);
 });
 
