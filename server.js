@@ -8,29 +8,28 @@ app.use(cors()); //cors 에러를 방지하기 위해
 
 app.use(bodyParser.json());
 
-const tasks = [];
+const tasks = {
+  name: "kevin",
+  data: [
+    { id: 1, title: "출근하기", completed: false },
+    { id: 2, title: "코딩하기", completed: true },
+    { id: 3, title: "퇴근하기", completed: false },
+  ],
+};
 
 app.post("api/tasks", (req, res) => {
   const newTask = {
-    id: tasks.length + 1,
+    id: tasks.data.length + 1,
     title: req.body.title,
     completed: false,
   };
 
-  tasks.push(newTask);
+  tasks.data.push(newTask);
 
   res.json(tasks);
 });
 
 app.get("/api/tasks", (req, res) => {
-  const tasks = {
-    name: "kevin",
-    data: [
-      { id: 1, title: "Task 1", completed: false },
-      { id: 2, title: "Task 2", completed: true },
-      { id: 3, title: "Task 3", completed: false },
-    ],
-  };
   res.json(tasks);
 });
 
