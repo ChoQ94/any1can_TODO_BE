@@ -8,7 +8,7 @@ app.use(cors()); //cors 에러를 방지하기 위해
 
 app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된디~
 
-const tasks = {
+let tasks = {
   name: "kevin",
   data: [
     { id: 1, title: "출근하기", completed: false },
@@ -26,15 +26,20 @@ app.post("/api/tasks", (req, res) => {
 
   tasks.data.push(newTask);
 
+  console.log("post", tasks);
   res.json(tasks);
 });
 
 app.get("/api/tasks", (req, res) => {
+  console.log("get", tasks);
   res.json(tasks);
 });
 
 app.delete("/api/tasks/:id", (req, res) => {
-  // Delete a task by ID
+  tasks.data = tasks.data.filter((item) => item.id !== Number(req.params.id)); // http 나 tcp text data만 서포트 해주기에 변환된다.
+
+  console.log("delete", tasks);
+  res.json(tasks);
 });
 
 // const port = process.env.PORT || 8000;
