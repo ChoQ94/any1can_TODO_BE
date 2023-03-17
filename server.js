@@ -6,7 +6,7 @@ const app = express();
 
 app.use(cors()); //cors 에러를 방지하기 위해
 
-app.use(bodyParser.json());
+app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된디~
 
 const tasks = {
   name: "kevin",
@@ -17,7 +17,7 @@ const tasks = {
   ],
 };
 
-app.post("api/tasks", (req, res) => {
+app.post("/api/tasks", (req, res) => {
   const newTask = {
     id: tasks.data.length + 1,
     title: req.body.title,
