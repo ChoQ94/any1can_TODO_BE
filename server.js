@@ -1,12 +1,40 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const app = express();
-
 app.use(cors()); //cors 에러를 방지하기 위해
-
 app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된디~
+
+// const uri =
+//   "mongodb+srv://choq:kw940419@choqcluster.kbhnwiy.mongodb.net/?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   serverApi: ServerApiVersion.v1,
+// });
+// client.connect((err) => {
+//   const collection = client.db("test").collection("devices");
+//   console.log(collection);
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+var mongoose = require('mongoose');
+// 2. testDB 세팅
+mongoose.connect("mongodb+srv://choq:kw940419@choqcluster.kbhnwiy.mongodb.net/?retryWrites=true&w=majority");
+// 3. 연결된 testDB 사용
+var db = mongoose.connection;
+// 4. 연결 실패
+db.on('error', function(){
+    console.log('Connection Failed!');
+});
+// 5. 연결 성공
+db.once('open', function() {
+    console.log('Connected!');
+});
+
 
 let tasks = {
   name: "kevin",
@@ -36,7 +64,7 @@ app.get("/api/tasks", (req, res) => {
 });
 
 app.delete("/api/tasks/:id", (req, res) => {
-  tasks.data = tasks.data.filter((item) => item.id !== Number(req.params.id)); // http 나 tcp text data만 서포트 해주기에 변환된다.
+  tasks.data = tasks.data.filter((item) => item.id !== Number(req.params.id)); // http 나 tcp는  text data만 서포트 해주기에 변환된다.
 
   console.log("delete", tasks);
   res.json(tasks);
