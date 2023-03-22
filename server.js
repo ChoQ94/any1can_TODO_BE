@@ -7,34 +7,35 @@ const app = express();
 app.use(cors()); //cors 에러를 방지하기 위해
 app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된디~
 
-// const uri =
-//   "mongodb+srv://choq:kw940419@choqcluster.kbhnwiy.mongodb.net/?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   serverApi: ServerApiVersion.v1,
-// });
-// client.connect((err) => {
-//   const collection = client.db("test").collection("devices");
-//   console.log(collection);
-//   // perform actions on the collection object
-//   client.close();
-// });
-
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 // 2. testDB 세팅
-mongoose.connect("mongodb+srv://choq:kw940419@choqcluster.kbhnwiy.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect(
+  "mongodb+srv://choq:kw940419@choqcluster.kbhnwiy.mongodb.net/?retryWrites=true&w=majority"
+);
 // 3. 연결된 testDB 사용
 var db = mongoose.connection;
 // 4. 연결 실패
-db.on('error', function(){
-    console.log('Connection Failed!');
+db.on("error", function () {
+  console.log("Connection Failed!");
 });
 // 5. 연결 성공
-db.once('open', function() {
-    console.log('Connected!');
+db.once("open", function () {
+  console.log("Connected!");
 });
 
+// var Client = require("mongodb").MongoClient;
+
+// Client.connect(
+//   "mongodb+srv://choq:kw940419@choqcluster.kbhnwiy.mongodb.net/?retryWrites=true&w=majority",
+//   function (error, db) {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log("connected:" + db);
+//       db.close();
+//     }
+//   }
+// );
 
 let tasks = {
   name: "kevin",
