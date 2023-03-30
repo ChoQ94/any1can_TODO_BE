@@ -23,20 +23,6 @@ db.once("open", function () {
   console.log("Connected!");
 });
 
-// var Client = require("mongodb").MongoClient;
-
-// Client.connect(
-//   "mongodb+srv://choq:kw940419@choqcluster.kbhnwiy.mongodb.net/?retryWrites=true&w=majority",
-//   function (error, db) {
-//     if (error) {
-//       console.log(error);
-//     } else {
-//       console.log("connected:" + db);
-//       db.close();
-//     }
-//   }
-// );
-
 let tasks = {
   name: "kevin",
   data: [
@@ -55,19 +41,16 @@ app.post("/api/tasks", (req, res) => {
 
   tasks.data.push(newTask);
 
-  console.log("post", tasks);
   res.json(tasks);
 });
 
 app.get("/api/tasks", (req, res) => {
-  console.log("get", tasks);
   res.json(tasks);
 });
 
 app.delete("/api/tasks/:id", (req, res) => {
   tasks.data = tasks.data.filter((item) => item.id !== Number(req.params.id)); // http 나 tcp는  text data만 서포트 해주기에 변환된다.
 
-  console.log("delete", tasks);
   res.json(tasks);
 });
 
