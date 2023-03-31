@@ -12,9 +12,7 @@ app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된�
 
 var mongoose = require("mongoose");
 // 2. testDB 세팅
-mongoose.connect(
-  "mongodb+srv://choq:kw940419@choqcluster.kbhnwiy.mongodb.net/?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.MONGO_DB);
 // 3. 연결된 testDB 사용
 var db = mongoose.connection;
 // 4. 연결 실패
