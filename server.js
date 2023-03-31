@@ -1,4 +1,7 @@
 const express = require("express");
+require("dotenv").config();
+// yarn 에도 추가해준다음에야 불러올 수 있음.
+
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { MongoClient, ServerApiVersion } = require("mongodb");
@@ -54,8 +57,8 @@ app.delete("/api/tasks/:id", (req, res) => {
   res.json(tasks);
 });
 
-// const port = process.env.PORT || 8000;
-const port = 8000;
+const port = process.env.PORT;
+// const port = 8000;
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port}`);
