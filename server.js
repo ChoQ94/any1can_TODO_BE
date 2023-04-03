@@ -4,25 +4,38 @@ require("dotenv").config();
 
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
-
+// const { MongoClient, ServerApiVersion } = require("mongodb");
+const connect = require("./schema");
 const app = express();
 app.use(cors()); //cors 에러를 방지하기 위해
 app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된디~
 
-var mongoose = require("mongoose");
-// 2. testDB 세팅
-mongoose.connect(process.env.MONGO_DB);
-// 3. 연결된 testDB 사용
-var db = mongoose.connection;
-// 4. 연결 실패
-db.on("error", function () {
-  console.log("Connection Failed!");
-});
-// 5. 연결 성공
-db.once("open", function () {
-  console.log("Connected!");
-});
+connect();
+
+// var mongoose = require("mongoose");
+// // 2. testDB 세팅
+// mongoose.connect(process.env.MONGO_DB);
+// // 3. 연결된 testDB 사용
+// var db = mongoose.connection;
+// // 4. 연결 실패
+// db.on("error", function () {
+//   console.log("Connection Failed!");
+// });
+// // 5. 연결 성공
+// db.once("open", function () {
+//   console.log("Connected!");
+// });
+
+// let Schema = mongoose.Schema;
+// let myTodoSchema = new Schema({
+//   id: { type: String, required: true },
+//   title: { type: String, required: true },
+//   completed: { type: Boolean, default: false },
+//   date: { type: Date, default: Date.now },
+// });
+
+// const Data = mongoose.model("Data", myTodoSchema);
+// console.log(Data);
 
 let tasks = {
   name: "kevin",
