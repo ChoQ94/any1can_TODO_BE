@@ -26,6 +26,14 @@ connect();
 //   console.log("Connected!");
 // });
 
+// mongoose
+//   .connect(process.env.MONGO_DB, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("Successfully connected to mongodb"))
+//   .catch((e) => console.error(e));
+
 // let Schema = mongoose.Schema;
 // let myTodoSchema = new Schema({
 //   id: { type: String, required: true },
