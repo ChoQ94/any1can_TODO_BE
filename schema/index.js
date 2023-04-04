@@ -15,4 +15,12 @@ const connect = () => {
   });
 };
 
+// mongoose
+//   .connect(process.env.MONGO_DB, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("Successfully connected to mongodb"))
+//   .catch((e) => console.error(e));
+
 module.exports = connect;
