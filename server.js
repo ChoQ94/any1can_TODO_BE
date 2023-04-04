@@ -9,41 +9,16 @@ const connect = require("./schema");
 const app = express();
 app.use(cors()); //cors 에러를 방지하기 위해
 app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된디~
-
+const Todo = require("./schema/club");
 connect();
 
-// var mongoose = require("mongoose");
-// // 2. testDB 세팅
-// mongoose.connect(process.env.MONGO_DB);
-// // 3. 연결된 testDB 사용
-// var db = mongoose.connection;
-// // 4. 연결 실패
-// db.on("error", function () {
-//   console.log("Connection Failed!");
-// });
-// // 5. 연결 성공
-// db.once("open", function () {
-//   console.log("Connected!");
-// });
-
-// mongoose
-//   .connect(process.env.MONGO_DB, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
+// Todo.find({})
+//   .then((users) => {
+//     console.log(users);
 //   })
-//   .then(() => console.log("Successfully connected to mongodb"))
-//   .catch((e) => console.error(e));
-
-// let Schema = mongoose.Schema;
-// let myTodoSchema = new Schema({
-//   id: { type: String, required: true },
-//   title: { type: String, required: true },
-//   completed: { type: Boolean, default: false },
-//   date: { type: Date, default: Date.now },
-// });
-
-// const Data = mongoose.model("Data", myTodoSchema);
-// console.log(Data);
+//   .catch((err) => {
+//     console.error(err);
+//   });
 
 let tasks = {
   name: "kevin",
@@ -67,7 +42,14 @@ app.post("/api/tasks", (req, res) => {
 });
 
 app.get("/api/tasks", (req, res) => {
-  res.json(tasks);
+  Todo.find({})
+    .then((todoItems) => {
+      res.json(todoItems);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "Server error" });
+    });
 });
 
 app.delete("/api/tasks/:id", (req, res) => {
