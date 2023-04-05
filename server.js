@@ -1,15 +1,19 @@
-const express = require("express");
 require("dotenv").config();
 // yarn 에도 추가해준다음에야 불러올 수 있음.
 
+const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-// const { MongoClient, ServerApiVersion } = require("mongodb");
 const connect = require("./schema");
 const app = express();
+const Todo = require("./schema/club");
+const port = process.env.PORT;
+
+// Static File Service
+app.use(express.static("public"));
 app.use(cors()); //cors 에러를 방지하기 위해
 app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된디~
-const Todo = require("./schema/club");
+
 connect();
 
 app.post("/api/tasks", (req, res) => {
@@ -49,8 +53,6 @@ app.delete("/api/tasks/:id", (req, res) => {
       res.status(500).json({ error: "Server error" });
     });
 });
-
-const port = process.env.PORT;
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port}`);
