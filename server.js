@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const connect = require("./schema");
 const app = express();
-const Todo = require("./schema/club");
+const Todo = require("./schema/todo");
 const port = process.env.PORT;
 
 // Static File Service
