@@ -1,5 +1,4 @@
-require("dotenv").config();
-// yarn 에도 추가해준다음에야 불러올 수 있음.
+require("dotenv").config(); // yarn 에도 추가해준다음에야 불러올 수 있음.
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -57,5 +56,5 @@ app.delete("/api/tasks/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`server is listening on port ${port}`);
+  console.log(`connected on port ${port}`);
 });
