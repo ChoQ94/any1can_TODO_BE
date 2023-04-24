@@ -34,8 +34,8 @@ app.post("/api/tasks", (req, res) => {
 
 app.get("/api/tasks/:date", (req, res) => {
   const date = req.params.date;
-  console.log(date);
-  Todo.find({ date: date }).then((item) => {
+  console.log(date.slice(0, 10));
+  Todo.find({ date: date.slice(0, 10) }).then((item) => {
     console.log(item);
   });
   Todo.find({})
