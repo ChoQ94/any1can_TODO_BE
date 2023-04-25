@@ -34,11 +34,22 @@ app.post("/api/tasks", (req, res) => {
 
 app.get("/api/tasks/:date", (req, res) => {
   const date = req.params.date;
-  console.log(date.slice(0, 10));
-  Todo.find({ date: date.slice(0, 10) }).then((item) => {
-    console.log(item);
-  });
-  Todo.find({})
+  console.log(date);
+
+  const filteredDate = new Date(date);
+
+  const startDate = new Date(
+    filteredDate.getFullYear(),
+    filteredDate.getMonth(),
+    filteredDate.getDate()
+  );
+  const endDate = new Date(
+    filteredDate.getFullYear(),
+    filteredDate.getMonth(),
+    filteredDate.getDate() + 1
+  );
+
+  Todo.find({ date: { $gte: startDate, $lt: endDate } })
     .then((todoItems) => {
       res.json(todoItems);
     })
@@ -46,6 +57,15 @@ app.get("/api/tasks/:date", (req, res) => {
       console.error(err);
       res.status(500).json({ error: "Server error" });
     });
+
+  // Todo.find({})
+  //   .then((todoItems) => {
+  //     res.json(todoItems);
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //     res.status(500).json({ error: "Server error" });
+  //   });
 });
 
 app.delete("/api/tasks/:id", (req, res) => {
