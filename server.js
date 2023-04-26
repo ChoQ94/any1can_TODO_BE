@@ -56,15 +56,6 @@ app.get("/api/tasks/:date", (req, res) => {
       console.error(err);
       res.status(500).json({ error: "Server error" });
     });
-
-  // Todo.find({})
-  //   .then((todoItems) => {
-  //     res.json(todoItems);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //     res.status(500).json({ error: "Server error" });
-  //   });
 });
 
 app.delete("/api/tasks/:id", (req, res) => {
