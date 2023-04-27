@@ -16,9 +16,11 @@ app.use(bodyParser.json()); //req 데이터를 파싱하기 위해서 사용된�
 connect();
 
 app.post("/api/tasks", (req, res) => {
+  const date = req.params.date;
   const newTask = new Todo({
     title: req.body.title,
     completed: false,
+    date: date,
   });
 
   newTask
