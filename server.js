@@ -17,10 +17,11 @@ connect();
 
 app.post("/api/tasks", (req, res) => {
   const date = req.params.date;
+  const filteredDate = new Date(date);
   const newTask = new Todo({
     title: req.body.title,
     completed: false,
-    date: date,
+    date: filteredDate,
   });
 
   newTask
