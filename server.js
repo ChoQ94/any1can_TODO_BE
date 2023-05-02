@@ -37,7 +37,6 @@ app.post("/api/tasks", (req, res) => {
 
 app.get("/api/tasks/:date", (req, res) => {
   const date = req.params.date;
-
   const filteredDate = new Date(date);
 
   const startDate = new Date(
