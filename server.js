@@ -35,6 +35,13 @@ app.post("/api/tasks", (req, res) => {
     });
 });
 
+app.post("/api/tasks/:id", (req, res) => {
+  const { id } = req.params;
+  const { completed } = req.body;
+
+  Todo.findOneAndUpdate({ _id: id });
+});
+
 app.get("/api/tasks/:date", (req, res) => {
   const date = req.params.date;
   const filteredDate = new Date(date);
