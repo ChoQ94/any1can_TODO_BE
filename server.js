@@ -39,7 +39,14 @@ app.post("/api/tasks/:id", (req, res) => {
   const { id } = req.params;
   const { completed } = req.body;
 
-  Todo.findOneAndUpdate({ _id: id }, { completed }, { new: true });
+  Todo.findOneAndUpdate({ _id: id }, { completed }, { new: true })
+    .then((task) => {
+      res.json(task);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Server error" });
+    });
 });
 
 app.get("/api/tasks/:date", (req, res) => {
