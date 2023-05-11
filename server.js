@@ -39,7 +39,7 @@ app.post("/api/tasks/:id", (req, res) => {
   const { id } = req.params;
   const { completed } = req.body;
 
-  Todo.findOneAndUpdate({ _id: id });
+  Todo.findOneAndUpdate({ _id: id }, { completed }, { new: true });
 });
 
 app.get("/api/tasks/:date", (req, res) => {
