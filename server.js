@@ -31,7 +31,7 @@ app.post("/api/tasks", (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server post error" });
     });
 });
 
@@ -45,7 +45,7 @@ app.post("/api/tasks/:id", (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server checking error" });
     });
 });
 
@@ -70,7 +70,7 @@ app.get("/api/tasks/:date", (req, res) => {
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server get error" });
     });
 });
 
@@ -80,7 +80,7 @@ app.delete("/api/tasks/:id", (req, res) => {
       res.json({ success: true });
     })
     .catch((err) => {
-      res.status(500).json({ error: "Server error" });
+      res.status(500).json({ error: "Server delete error" });
     });
 });
 
